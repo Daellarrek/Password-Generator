@@ -1,14 +1,6 @@
 // Constants
 const generateBtn = document.querySelector("#generate");
-const lowerCase = "abcdefghijklmnopqrstuvwxyz"
-const lowercaseArray = [lowerCase]
-const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const uppercaseArray = [upperCase]
-const num = "0123456789"
-const numArray = [num]
-const specChar = "!@#$%^&*()_+?<>"
-const speccharArray = [specChar]
-const allChars = []
+
 // Functions
 
 
@@ -26,28 +18,53 @@ function writePassword() {
 /**
  * generate a password based on certain criteria
  */
-function generatePassword(){
+function generatePassword() {
+
+  let lower = "abcdefghijklmnopqrstuvwxyz"
+  let lowerArr = lower.split("");
+  let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let upperArr = upper.split("");
+  let num = "0123456789";
+  let numArr = num.split("");
+  let spec = "!@#$%^&*()_+?<>";
+  let specArr = spec.split("");
+  let allChars = [];
 
   // Password is currently blank! We need to make a better one
   let password = "";
-  
-  let length = prompt("Choose password length: 8-128 characters.");
 
-  if (length < 8 || length > 128){
+  let pwlength = prompt("Choose password length: 8-128 characters.");
+
+  if (pwlength < 8 || pwlength > 128) {
     alert("Password must be between defined length.")
     generatePassword()
   }
 
-  let lowercase = confirm("Do you want lowercase characters?");
+  if (confirm("Do you want lowercase characters?")) {
+    allChars.push(lowerArr);
+  }
 
-  let uppercase = confirm("Do you want uppercase characters?");
+  if (confirm("Do you want uppercase characters?")) {
+    allChars.push(upperArr);
+  }
 
-  let numbers = confirm("Do you want numeric characters?");
+  if (confirm("Do you wamt numeric characters?")) {
+    allChars.push(numArr);
+  }
 
-  let special = confirm("Do you want special characters");
+  if (confirm("Do you want special characters?")) {
+    allChars.push(specArr);
+  }
 
-  
+  if (allChars.length === 0) {
+    alert("Minimum of one type of character must be chosen");
+    generatePassword()
+  }
 
+  for (let i = 0; i < pwlength.length; ++i) {
+    let random = Math.floor(Math.random().pwlength);
+    password = allChars[random];
+  }
 
   return password;
 }
