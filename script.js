@@ -31,24 +31,24 @@ function generatePassword() {
     generatePassword()
   }
   if (confirm("Do you want lowercase characters?")) {
-    allChars.push(lowerArr);
+    allChars = allChars.concat(lowerArr);
   }
   if (confirm("Do you want uppercase characters?")) {
-    allChars.push(upperArr);
+    allChars = allChars.concat(upperArr);
   }
   if (confirm("Do you wamt numeric characters?")) {
-    allChars.push(numArr);
+    allChars = allChars.concat(numArr);
   }
   if (confirm("Do you want special characters?")) {
-    allChars.push(specArr);
+    allChars = allChars.concat(specArr);
   }
   if (allChars.length === 0) {
     alert("Minimum of one type of character must be chosen");
     generatePassword()
   }
   for (let i = 0; i < pwlength; i++) {
-    let random = Math.floor(Math.random(allChars.length));
-    password = allChars[random];
+    let random = Math.floor(Math.random() * Math.floor(allChars.length));
+    password += allChars[random];
   }
 
   return password;
